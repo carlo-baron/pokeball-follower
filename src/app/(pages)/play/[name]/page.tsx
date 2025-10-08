@@ -59,7 +59,7 @@ export default function BerryCatcherGame(){
       fetch('https://pokeapi.co/api/v2/berry/')
         .then(res=>res.json())
         .then(data=>{
-          data.results.forEach(berry => {
+          data.results.forEach((berry:{name: string; url: string}) => {
             const name = berry.name;
             const url = berry.url;
             fetch(url)
@@ -149,9 +149,9 @@ export default function BerryCatcherGame(){
         <Box
         className='flex'
         >
-          <CloseIcon color={loss >= 1 ? 'warning' : ''} />
-          <CloseIcon color={loss >= 2 ? 'warning' : ''} />
-          <CloseIcon color={loss >= 3 ? 'warning' : ''} />
+          <CloseIcon color={loss >= 1 ? 'warning' : 'inherit'} />
+          <CloseIcon color={loss >= 2 ? 'warning' : 'inherit'} />
+          <CloseIcon color={loss >= 3 ? 'warning' : 'inherit'} />
         </Box>
         <Typography>
           Score: {score}
@@ -210,9 +210,9 @@ export default function BerryCatcherGame(){
 
 interface BerryProps{
   data: Berry;
-  constraint: RefObject<HTMLDivElement>;
+  constraint: React.RefObject<HTMLDivElement | null>;
   id: string;
-  user: RefObject<HTMLImageElement>;
+  user: React.RefObject<HTMLImageElement | null>;
   speed?: number;
   onCollide: (id: string) => void;
   onOutOfBounds: (id: string) => void;
@@ -246,7 +246,7 @@ function Berry({data, speed=10, constraint, id, user, onCollide, onOutOfBounds}:
     animate={animate}
     transition={{duration: speed, ease: 'linear'}}
     onUpdate={()=>{
-      if(!self.current) return;
+      if(!self.current || !constraint.current || !user.current) return;
       const selfRect = self.current.getBoundingClientRect();
       const constRect = constraint.current.getBoundingClientRect();
       const userRect = user.current.getBoundingClientRect();
@@ -261,7 +261,7 @@ function Berry({data, speed=10, constraint, id, user, onCollide, onOutOfBounds}:
   );    
 }
 
-function isOverlapping(rect1, rect2) {
+function isOverlapping(rect1: DOMRect, rect2: DOMRect) {
   return (
     rect1.left < rect2.right &&
     rect1.right > rect2.left &&
