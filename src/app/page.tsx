@@ -1,7 +1,6 @@
 "use client";
 
 import { sdk } from '@farcaster/miniapp-sdk';
-import { useEffect } from 'react';
 import { 
   useState,
   useEffect,
