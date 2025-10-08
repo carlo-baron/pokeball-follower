@@ -1,5 +1,7 @@
 "use client";
 
+import { sdk } from '@farcaster/miniapp-sdk';
+import { useEffect } from 'react';
 import { 
   useState,
   useEffect,
@@ -37,6 +39,10 @@ export default function App() {
   const [mounted, setMounted] = useState<boolean>(false);
   const [selected, setSelected] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
 
   useEffect(() => {
   const result: pokemon[] = [];
@@ -206,7 +212,10 @@ export default function App() {
               </DialogContent>
               <DialogActions>
                 <Button
-                onClick={()=>router.push(`/play/${selected}`)}
+                onClick={()=>{
+                  if(!selected) return;
+                  router.push(`/play/${selected}`)
+                }}
                 >
                   Choose
                 </Button>

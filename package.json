@@ -11,11 +11,13 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@farcaster/miniapp-sdk": "^0.1.10",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
     "@types/three": "^0.180.0",
+    "@vercel/speed-insights": "^1.2.0",
     "motion": "^12.23.22",
     "next": "15.5.4",
     "react": "19.1.0",
