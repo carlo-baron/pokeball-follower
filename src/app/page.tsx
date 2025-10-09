@@ -21,8 +21,8 @@ import {
   ToggleButton,
 } from '@mui/material/';
 import PokeballScene from './components/PokeballScene';
-import { mons } from './utils/mons';
 import {useRouter} from 'next/navigation';
+import pokemonData from '@/../public/pokemon.json';
 
 type pokemon = {
   name: string;
@@ -44,33 +44,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-  const result: pokemon[] = [];
-
-  async function fetchMons() {
-    for (const url of mons) {
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        result.push({
-          name: data.name,
-          sprite:
-            data.sprites?.other?.['official-artwork']?.front_default ||
-            data.sprites?.front_default,
-        });
-      } catch (err) {
-        console.error(`Failed to fetch ${url}:`, err);
-      }
-    }
-
-    setPokemons(result);
+    setPokemons(pokemonData);
     setLoaded(true);
-  }
-
-
-  fetchMons();
-  setMounted(true);
-}, []);
+    setMounted(true);
+  }, []);
   
   const containerVariants = {
     initial: {

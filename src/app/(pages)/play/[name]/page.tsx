@@ -1,11 +1,10 @@
 "use client";
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import {
   useState,
   useEffect,
   useRef,
-  RefObject,
 } from 'react';
 import{
   Container,
@@ -18,6 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import{
   motion
 } from 'motion/react';
+import pokemonData from '@/../public/pokemon.json';
 
 interface Berry{
   id: string;
@@ -39,22 +39,19 @@ export default function BerryCatcherGame(){
   const [over, setOver] = useState<boolean>(false);
   const [loss, setLoss] = useState<number>(0);
   const [speed, setSpeed] = useState<number>(10);
+  const router = useRouter();
 
   const arenaRef = useRef<HTMLDivElement | null>(null);
   const userRef = useRef<HTMLImageElement | null>(null);
 
 
   useEffect(() => {
-    async function fetchMon(){
-      fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        .then(res=>res.json())
-        .then(data=>{
-          setMon({
-            name: data.name,
-            sprite: data.sprites.other['official-artwork'].front_default || data.sprites.front_default
-          });
-        });
+    const pokemon = pokemonData.find(mon => mon.name === name);
+    if(!pokemon) {
+      router.push('/');
+      return;
     }
+    setMon(pokemon);
     async function fetchBerries(){
       fetch('https://pokeapi.co/api/v2/berry/')
         .then(res=>res.json())
@@ -81,7 +78,6 @@ export default function BerryCatcherGame(){
           });
         });
     }
-    fetchMon();
     fetchBerries();
   }, [name]);
 
