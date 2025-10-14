@@ -14,18 +14,18 @@ return Response.json(
     "signature": "MHgxNDM1ZjUzZmI4YWZmMTU2MjE0NDc0YzY1ZWI5ZTQ2NjlkZmZlMmI3ZmExYzdjOTdhZmFkOTQ1ZDc2MmY4N2UyNmU1OGNjOTU2NmU5Y2IwMTU3MWNlZThmOTM4NDVlZTUyNTY5ZGU5ZWI3NDMzNWZmNTcwMGUyMGQ2M2U0NTFhMzFi"
   },
   "baseBuilder": {
-    "allowedAddresses": [""] // add your Base Account address here
+    "allowedAddresses": ["0xa1bf131da72bb3ac780c9b0835000a2d6f643186"] // add your Base Account address here
   },
   "miniapp": {
     "version": "1",
-    "name": "Example Mini App",
-    "homeUrl": "https://ex.co",
+    "name": "Pokemon Catch",
+    "homeUrl": `${URL}`,
     "iconUrl": "https://ex.co/i.png",
     "splashImageUrl": "https://ex.co/l.png",
     "splashBackgroundColor": "#000000",
     "webhookUrl": "https://ex.co/api/webhook",
-    "subtitle": "Fast, fun, social",
-    "description": "A fast, fun way to challenge friends in real time.",
+    "subtitle": "Feed Your Pokemons",
+    "description": "Spend time by feeding pokemons by catching berries",
     "screenshotUrls": [
       "https://ex.co/s1.png",
       "https://ex.co/s2.png",
@@ -34,7 +34,7 @@ return Response.json(
     "primaryCategory": "social",
     "tags": ["example", "miniapp", "baseapp"],
     "heroImageUrl": "https://ex.co/og.png",
-    "tagline": "Play instantly",
+    "tagline": "Play repeatedly",
     "ogTitle": "Example Mini App",
     "ogDescription": "Challenge friends in real time.",
     "ogImageUrl": "https://ex.co/og.png",

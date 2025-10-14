@@ -16,14 +16,14 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Berry Catch",
-    description: "Catch Berries to feed your mons",
+    title: "Pokemon Catch",
+    description: "Catch Berries to feed your Pokemons",
     other: {
       'fc:miniapp': JSON.stringify({
         version: 'next',
         imageUrl: 'https://your-app.com/embed-image',
         button: {
-          title: `Lauch Berry Catch`,
+          title: `Lauch Pokemon Catch`,
           action: {
             type: 'launch_miniapp',
             name: 'Berry Catch',
